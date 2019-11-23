@@ -18,10 +18,6 @@ var (
 
 type Pic []string
 
-func (p Pic) width() int {
-	return len(p[0])
-}
-
 func (p Pic) height() int {
 	return len(p)
 }
@@ -50,13 +46,6 @@ func draw(screen tcell.Screen, x int, y int, width int, height int) (int, int, i
 	return 0, 0, 0, 0
 }
 
-func run() error {
-	app = tview.NewApplication()
-	view = tview.NewBox().SetDrawFunc(draw)
-
-	return app.SetRoot(view, true).Run()
-}
-
 func refresh() {
 	tick := time.NewTicker(refreshInterval)
 	for {
@@ -68,8 +57,11 @@ func refresh() {
 }
 
 func main() {
+	app = tview.NewApplication()
+	view = tview.NewBox().SetDrawFunc(draw)
+
 	go refresh()
-	if err := run(); err != nil {
+	if err := app.SetRoot(view, true).Run(); err != nil {
 		panic(err)
 	}
 }
