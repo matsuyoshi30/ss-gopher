@@ -23,9 +23,9 @@ func draw(screen tcell.Screen, x int, y int, width int, height int) (int, int, i
 	var gopher Pic
 
 	if flag {
-		gopher = appenginegopher[1]
+		gopher = frontpage[1]
 	} else {
-		gopher = appenginegopher[2]
+		gopher = frontpage[2]
 	}
 
 	startY := (height - gopher.height()) / 2
