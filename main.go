@@ -36,6 +36,7 @@ func draw(screen tcell.Screen, x int, y int, width int, height int) (int, int, i
 	} else {
 		gopher = frontpage[2]
 	}
+	flag = !flag
 
 	startY := (height - gopher.height()) / 2
 	for _, gopherStr := range gopher {
@@ -43,7 +44,8 @@ func draw(screen tcell.Screen, x int, y int, width int, height int) (int, int, i
 		startY++
 	}
 
-	flag = !flag
+	timeStr := time.Now().Format("Current time is 15:04:05")
+	tview.Print(screen, timeStr, x, startY, width, tview.AlignCenter, tcell.ColorLime)
 
 	return 0, 0, 0, 0
 }
